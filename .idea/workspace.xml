@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8860d98a-e854-437e-ab6c-7bec806a6b4d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/billing_software.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/billing_software/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/billing_software/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/billing_software/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/billing_software/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/billing_software/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
