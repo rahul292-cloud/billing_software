@@ -15,4 +15,8 @@ class Sub_purchase(BaseModel):
     amonut = models.DecimalField(max_digits=7, decimal_places=2,null=True,blank=True)
     sub_total = models.DecimalField(max_digits=7, decimal_places=2,null=True,blank=True)
 
+    def __str__(self):
+        return self.purchase_return
+
+
 
