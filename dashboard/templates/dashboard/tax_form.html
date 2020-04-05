@@ -1,0 +1,40 @@
+{% extends 'dashboard/base.html'%}
+{% block title %}
+Vendor
+{% endblock %}
+
+{%block content %}
+<form>
+    <div class="form-group col-md-5">
+        <label for="exampleInputName">Tax Name</label>
+        <input type="text" class="form-control" id="exampleInputName" name="name" aria-describedby="nameHelp"
+               placeholder="Enter tax name">
+    </div>
+
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputTaxper">Tax Percentage</label>
+        <input type="text" class="form-control" id="exampleInputTaxper" name="taxper" aria-describedby="nameHelp"
+               placeholder="Enter tax percentage ">
+    </div>
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputSgst">SGST</label>
+        <input type="text" class="form-control" id="exampleInputSgst" name="state" aria-describedby="nameHelp"
+               placeholder="Enter SGST">
+    </div>
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputCgst">CGST</label>
+        <input type="text" class="form-control" id="exampleInputCgst" name="city" aria-describedby="nameHelp"
+               placeholder="Enter CGST">
+    </div>
+    <div class="form-group col-md-5">
+        <label for="exampleInputIgst">IGST</label>
+        <input type="text" class="form-control" id="exampleInputIgst" name="pin_no" aria-describedby="nameHelp"
+               placeholder="Enter IGST">
+    </div>
+    <button type="submit" class="btn btn-primary mx-3">Submit</button>
+</form>
+
+{% endblock%}
