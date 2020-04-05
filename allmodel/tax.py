@@ -11,3 +11,4 @@ class Tax(BaseModel):
 
     def __str__(self):
         return self.tax_name
+

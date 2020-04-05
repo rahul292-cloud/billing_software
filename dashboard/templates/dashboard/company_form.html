@@ -1,18 +1,40 @@
 {% extends 'dashboard/base.html' %}
-
 {% block title %}
-client
+Comapany
 {% endblock %}
 
 {%block content %}
-
 <form>
     <div class="form-group col-md-5">
-        <label for="exampleInputName">Name</label>
+        <label for="exampleInputName">Comapny Name</label>
         <input type="text" class="form-control" id="exampleInputName" name="name" aria-describedby="nameHelp"
-               placeholder="Enter name">
+               placeholder="Enter company name">
     </div>
 
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputWebsite">Website Name</label>
+        <input type="text" class="form-control" id="exampleInputWebsite" name="taxper" aria-describedby="nameHelp"
+               placeholder="Enter web site name ">
+    </div>
+
+     <div class="form-group col-md-5">
+        <label for="exampleInputEmai">Email Id</label>
+        <input type="email" class="form-control" id="exampleInputEmai" name="email" aria-describedby="nameHelp"
+               placeholder="Enter Email Id">
+    </div>
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputGst">GST IN</label>
+        <input type="text" class="form-control" id="exampleInputGst" name="state" aria-describedby="nameHelp"
+               placeholder="Enter SGST">
+    </div>
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputCin">CIN</label>
+        <input type="text" class="form-control" id="exampleInputCin" name="city" aria-describedby="nameHelp"
+               placeholder="Enter CGST">
+    </div>
     <div class="form-group col-md-5">
         <label for="exampleInputAddress">Address</label>
         <textarea class="form-control" id="exampleInputAddress" name="address" rows="3"></textarea>
@@ -40,7 +62,10 @@ client
         <input type="text" class="form-control" id="exampleInputPin" name="pin_no" aria-describedby="nameHelp"
                placeholder="Enter pin">
     </div>
+
+
+
     <button type="submit" class="btn btn-primary mx-3">Submit</button>
 </form>
 
-{% endblock %}
+{% endblock%}
