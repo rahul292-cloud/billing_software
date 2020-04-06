@@ -8,12 +8,18 @@ from allmodel import company
 class Company(View):
     form = CompanyForm
     model = company.Company
-
     companyForm_template = 'dashboard/company_form.html'
 
     def get(self, request, *args, **kwargs):
+        #if 'pk' in kwargs==0:
         if 'company_form' in kwargs:
             return render(request, self.companyForm_template, {'form': self.form()})
+        elif 'company_view' in kwargs:
+            model= company.Company.objects.all()
+            return render(request, 'dashboard/company_view.html', {'form': model})
+        #else
+
+
     def post(self, request, *args, **kwargs):
         form = self.form(request.POST, request.FILES)
         # print(form.is_valid())
@@ -32,12 +38,12 @@ class Company(View):
                 company_name=company_name, website_name=website_name, mobile_no=mobile_no, email_id=email_id,
                 gst_in=gst_in, cin=cin, adress=adress, state=state, city=city, pin_no=pin_no
             )
-            return redirect(to="company_form")
+            return redirect(to="company_view")
 
 
-def company_view(request):
-    model=company.Company.objects.all()
-    return render(request,'dashboard/company_view.html',{'form':model})
+# def company_view(request):
+    # model=company.Company.objects.all()
+#     return render(request,'dashboard/company_view.html')
 
 
 
@@ -45,7 +51,7 @@ def index(request):
     return render(request,'dashboard/base.html')
 
 def client_form(request):
-    return render(request,'dashboard/client_form.html')
+    return render(request,'dashboard/clent_form.html')
 
 def vendor_form(request):
     return render(request,'dashboard/vendor_form.html')
