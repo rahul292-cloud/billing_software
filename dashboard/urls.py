@@ -21,5 +21,6 @@ urlpatterns = [
     path('client_form',views.client_form,name='client_form' ),
     path('vendor_form',views.vendor_form,name='vendor_form' ),
     path('tax_form',views.tax_form,name='tax_form' ),
-    path('company_form',views.company_form,name='company_form' ),
+    # path('company_form',views.company_form,name='company_form' ),
+    path('company_form/', views.Company.as_view(), {'company_form': ''}, name="company_form"),
 ]
