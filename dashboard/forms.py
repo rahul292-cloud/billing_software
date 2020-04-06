@@ -1,7 +1,6 @@
 import os
 from django import forms
-from allmodel import purchase, company
-
+from allmodel import company
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = company.Company

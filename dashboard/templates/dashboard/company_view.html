@@ -1,0 +1,48 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}
+Comapany Details
+{% endblock %}
+
+
+{% block content %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Company Name</th>
+        <th scope="col">Website Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Mobile No</th>
+        <th scope="col">Email Id</th>
+        <th scope="col">GST No</th>
+        <th scope="col">CIN</th>
+        <th scope="col">State</th>
+        <th scope="col">City</th>
+        <th scope="col">Pin No</th>
+    </tr>
+    </thead>
+    {% for company in form %}
+    <tbody>
+    <tr>
+        <td></td>
+        <td>{{company.company_name}}</td>
+        <td>{{company.website_name}}</td>
+        <td>{{company.adress}}</td>
+        <td>{{company.mobile_no}}</td>
+        <td>{{company.email_id}}</td>
+        <td>{{company.gst_in}}</td>
+        <td>{{company.cin}}</td>
+        <td>{{company.state}}</td>
+        <td>{{company.city}}</td>
+        <td>{{company.pin_no}}</td>
+        <td><a class="btn btn-primary">Edit</a></td>
+        <td><a class="btn btn-danger">Delete</a></td>
+
+    </tr>
+    </tbody>
+
+    {% endfor %}
+
+</table>
+{% endblock %}
+

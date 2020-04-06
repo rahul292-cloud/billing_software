@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, View
 from .forms import *
-from billing_software.allmodel import company
+from allmodel import company
 
 # Create your views here.
 
 class Company(View):
     form = CompanyForm
     model = company.Company
+
     companyForm_template = 'dashboard/company_form.html'
 
     def get(self, request, *args, **kwargs):
@@ -15,7 +16,7 @@ class Company(View):
             return render(request, self.companyForm_template, {'form': self.form()})
     def post(self, request, *args, **kwargs):
         form = self.form(request.POST, request.FILES)
-        print(form.is_valid())
+        # print(form.is_valid())
         if form.is_valid():
             company_name = form.cleaned_data.get('company_name')
             website_name = form.cleaned_data.get('website_name')
@@ -33,6 +34,13 @@ class Company(View):
             )
             return redirect(to="company_form")
 
+
+def company_view(request):
+    model=company.Company.objects.all()
+    return render(request,'dashboard/company_view.html',{'form':model})
+
+
+
 def index(request):
     return render(request,'dashboard/base.html')
 
@@ -44,6 +52,3 @@ def vendor_form(request):
 
 def tax_form(request):
     return render(request,'dashboard/tax_form.html')
-
-def company_form(request):
-    return render(request,'dashboard/company_form.html')
