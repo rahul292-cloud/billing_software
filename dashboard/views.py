@@ -76,6 +76,20 @@ class CompanyEdit(View):
             )
             return redirect(to="company_view")
 
+class CompanyDelete(View):
+    company_delete_template = 'dashboard/delete.html'
+    model = company.Company
+
+    def get(self, request, *args, **kwargs):
+        if 'company_delete' in kwargs:
+            item = self.model.objects.get(id=kwargs.get("object_id"))
+            return render(request, self.company_delete_template, {'item':item})
+    def post(self, request, *args, **kwargs):
+        item = self.model.objects.get(id=kwargs.get("object_id"))
+        item.delete()
+        return redirect(to="company_view")
+
+
 
 
 # def company_view(request):
