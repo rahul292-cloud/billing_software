@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, View
+from django.views.generic import  View
 from .forms import *
 from allmodel import company
 
@@ -9,6 +9,7 @@ class Company(View):
     form = CompanyForm
     model = company.Company
     companyForm_template = 'dashboard/company_form.html'
+    companyView_template = 'dashboard/company_view.html'
 
     def get(self, request, *args, **kwargs):
         #if 'pk' in kwargs==0:
@@ -16,7 +17,7 @@ class Company(View):
             return render(request, self.companyForm_template, {'form': self.form()})
         elif 'company_view' in kwargs:
             model= company.Company.objects.all()
-            return render(request, 'dashboard/company_view.html', {'form': model})
+            return render(request, self.companyView_template, {'form': model})
         #else
 
 
