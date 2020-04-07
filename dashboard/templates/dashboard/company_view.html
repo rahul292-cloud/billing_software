@@ -39,8 +39,13 @@ Comapany Details
         <td>{{company.state}}</td>
         <td>{{company.city}}</td>
         <td>{{company.pin_no}}</td>
+<<<<<<< HEAD
         <td><a class="btn btn-primary" href="">Edit</a></td>
         <td><a class="btn btn-danger" href="">Delete</a></td>
+=======
+        <td><a class="btn btn-primary" href="{% url 'company_edit_form' company.pk %}">Edit</a></td>
+        <td><a class="btn btn-danger" href="{% url 'company_delete' company.pk %}">Delete</a></td>
+>>>>>>> a70e1b32f38224c7cf13adc5710417683f6c095d
 
     </tr>
     </tbody>
