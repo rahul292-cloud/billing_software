@@ -1,0 +1,86 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}
+Comapany Edit Form
+{% endblock %}
+
+{%block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="form-group col-md-5">
+        <label for="exampleInputName">Comapny Name</label>
+        <div  id="exampleInputName" name="name">
+            {{editForm.company_name}}
+        </div>
+    </div>
+
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputWebsite">Website Name</label>
+        <div  id="exampleInputWebsite" name="Web name">
+            {{editForm.website_name}}
+        </div>
+    </div>
+
+     <div class="form-group col-md-5">
+        <label for="exampleInputEmai">Email Id</label>
+        <div  id="exampleInputEmai" name="Email">
+            {{editForm.email_id}}
+        </div>
+    </div>
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputMobile">Mobile Number</label>
+       <div  id="exampleInputMobile" name="Mobile Number">
+            {{editForm.mobile_no}}
+        </div>
+    </div>
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputGst">GST IN</label>
+        <div  id="exampleInputGst" name="GST">
+            {{editForm.gst_in}}
+        </div>
+    </div>
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputCin">CIN</label>
+       <div  id="exampleInputCin" name="CIN">
+            {{editForm.cin}}
+        </div>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="exampleInputAddress">Address</label>
+       <div  id="exampleInputAddress" name="Address">
+            {{editForm.adress}}
+        </div>
+    </div>
+
+
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputState">State</label>
+        <div  id="exampleInputState" name="State">
+            {{editForm.state}}
+        </div>
+    </div>
+
+    <div class="form-group col-md-5">
+        <label for="exampleInputCity">City</label>
+       <div  id="exampleInputCity" name="City">
+            {{editForm.city}}
+        </div>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="exampleInputPin">Pin No</label>
+       <div  id="exampleInputPin" name="Pin">
+            {{editForm.pin_no}}
+        </div>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary mx-3">Update</button>
+     <a class="btn btn-danger" href="{% url 'company_view'%}">Cancel</a>
+</form>
+
+{% endblock%}

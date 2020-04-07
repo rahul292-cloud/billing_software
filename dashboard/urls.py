@@ -24,4 +24,6 @@ urlpatterns = [
     # path('company_view',views.company_view,name='company_view' ),
     path('company_form/', views.Company.as_view(), {'company_form': ''}, name="company_form"),
     path('company_view/', views.Company.as_view(), {'company_view': ''}, name="company_view"),
+    path('company_edit_form/<int:object_id>', views.CompanyEdit.as_view(), {'company_edit_form': ''}, name="company_edit_form"),
+    # path('company_update/<int:object_id>', views.Company.as_view(), {'company_update': ''}, name="company_update"),
 ]
