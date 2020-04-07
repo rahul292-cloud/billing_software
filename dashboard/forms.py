@@ -1,6 +1,6 @@
 import os
 from django import forms
-from allmodel import company
+from allmodel import company,vendor,client
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = company.Company
@@ -20,3 +20,41 @@ class CompanyForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
             'pin_no': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
         }
+
+
+class VendorForm(forms.ModelForm):
+    class Meta:
+        model=client.Client
+        fields=[
+            'name','address','mobile_no','state','city','pin_no'
+        ]
+
+
+        widgets ={
+
+            'name': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'address': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'mobile_no': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'state': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'city': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'pin_no': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+        }
+
+
+class clientForm(forms.ModelForm):
+    class Meta:
+        model = vendor.Vendor
+        fields = [
+            'name', 'address', 'mobile_no', 'state', 'city', 'pin_no'
+        ]
+
+        widgets = {
+
+            'name': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'address': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'mobile_no': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'state': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'city': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'pin_no': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+        }
+

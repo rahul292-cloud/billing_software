@@ -8,7 +8,7 @@ Comapany
     {% csrf_token %}
     <div class="form-group col-md-5">
         <label for="exampleInputName">Comapny Name</label>
-        <div  id="exampleInputName" name="name">
+        <div id="exampleInputName" name="name">
             {{form.company_name}}
         </div>
     </div>
@@ -16,71 +16,69 @@ Comapany
 
     <div class="form-group col-md-5">
         <label for="exampleInputWebsite">Website Name</label>
-        <div  id="exampleInputWebsite" name="Web name">
+        <div id="exampleInputWebsite" name="Web name">
             {{form.website_name}}
         </div>
     </div>
 
-     <div class="form-group col-md-5">
+    <div class="form-group col-md-5">
         <label for="exampleInputEmai">Email Id</label>
-        <div  id="exampleInputEmai" name="Email">
+        <div id="exampleInputEmai" name="Email">
             {{form.email_id}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
         <label for="exampleInputMobile">Mobile Number</label>
-       <div  id="exampleInputMobile" name="Mobile Number">
+        <div id="exampleInputMobile" name="Mobile Number">
             {{form.mobile_no}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
         <label for="exampleInputGst">GST IN</label>
-        <div  id="exampleInputGst" name="GST">
+        <div id="exampleInputGst" name="GST">
             {{form.gst_in}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
         <label for="exampleInputCin">CIN</label>
-       <div  id="exampleInputCin" name="CIN">
+        <div id="exampleInputCin" name="CIN">
             {{form.cin}}
         </div>
     </div>
     <div class="form-group col-md-5">
         <label for="exampleInputAddress">Address</label>
-       <div  id="exampleInputAddress" name="Address">
+        <div id="exampleInputAddress" name="Address">
             {{form.adress}}
         </div>
     </div>
 
 
-
     <div class="form-group col-md-5">
         <label for="exampleInputState">State</label>
-        <div  id="exampleInputState" name="State">
+        <div id="exampleInputState" name="State">
             {{form.state}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
         <label for="exampleInputCity">City</label>
-       <div  id="exampleInputCity" name="City">
+        <div id="exampleInputCity" name="City">
             {{form.city}}
         </div>
     </div>
     <div class="form-group col-md-5">
         <label for="exampleInputPin">Pin No</label>
-       <div  id="exampleInputPin" name="Pin">
+        <div id="exampleInputPin" name="Pin">
             {{form.pin_no}}
         </div>
     </div>
 
 
-
     <button type="submit" class="btn btn-primary mx-3">Add</button>
-     <a class="btn btn-danger" href="{% url 'company_view'%}">Cancel</a>
+    <a class="btn btn-danger" href="{% url 'company_view'%}">Cancel</a>
 </form>
 
 {% endblock%}
