@@ -1,0 +1,102 @@
+{% extends 'dashboard/base.html'%}
+{% block title %}
+Purchase Add
+{% endblock %}
+
+{%block content %}
+<div class="container my-2">
+
+    <div class="form-row mx-2">
+        <label for="inputState">Item Code</label>
+
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="inputState">
+
+        </div>
+        <label for="inputZip">Item Name</label>
+
+        <div class="col-md-2">
+            <input type="text" class="form-control" id="inputZip">
+        </div>
+
+
+        <button class="btn btn-danger">-</button>
+
+
+    </div>
+    <div id="param"></div>
+    <button class="btn btn-primary my-2" id="addParam">Add New Line</button>
+
+</div>
+
+{% block javascript %}
+<script>
+ let=addParamCount=0
+
+ function getElementFromString(string){
+let div = document.createElement("div");
+   div.innerHTML=string;
+ return div.firstElementChild;
+
+ }
+
+ let addParam =document.getElementById("addParam");
+
+
+    addParam.addEventListener('click',()=>{
+ let params =document.getElementById("param");
+   let string =`
+   <div class="container my-2">
+
+        <div class="form-row my-2">
+                <label for="inputState">Item Code</label>
+
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="inputState">
+
+            </div>
+                            <label for="inputZip">Item Name</label>
+
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+             <button class="btn btn-danger deleteParam">-</button>
+
+        </div>
+        </div>  `;
+
+         let paramElement=getElementFromString(string);
+        params.append(paramElement);
+
+        var deleteParam =document.getElementsByClassName("deleteParam");
+          for ( let item of deleteParam){
+                  item.addEventListener('click',(e)=>{
+                  e.target.parentElement.remove();
+            });
+       }
+      addParamCount++;
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+{% endblock %}
+
+{% endblock%}
+let news =
+
+

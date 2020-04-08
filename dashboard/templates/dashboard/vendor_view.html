@@ -1,6 +1,6 @@
 {% extends 'dashboard/base.html' %}
 {% block title %}
-Client Details
+Vendor Details
 {% endblock %}
 
 
@@ -20,19 +20,19 @@ Client Details
         <th scope="col">Pin No</th>
     </tr>
     </thead>
-    {% for client in form %}
+    {% for vendor in form %}
     <tbody>
     <tr>
         <td></td>
-        <td>{{client.name}}</td>
-        <td>{{client.address}}</td>
-        <td>{{client.mobile_no}}</td>
-        <td>{{client.state}}</td>
-        <td>{{client.city}}</td>
-        <td>{{client.pin_no}}</td>
+        <td>{{vendor.name}}</td>
+        <td>{{vendor.address}}</td>
+        <td>{{vendor.mobile_no}}</td>
+        <td>{{vendor.state}}</td>
+        <td>{{vendor.city}}</td>
+        <td>{{vendor.pin_no}}</td>
 
-        <td><a class="btn btn-primary" href="{% url 'client_edit_form' client.pk  %}">Edit</a></td>
-        <td><a class="btn btn-danger" href="{% url 'client_delete' client.pk %}">Delete</a></td>
+        <td><a class="btn btn-primary" href="{% url 'vendor_edit_form' vendor.pk  %}">Edit</a></td>
+        <td><a class="btn btn-danger" href="{% url 'vendor_delete' vendor.pk %}">Delete</a></td>
 
     </tr>
     </tbody>

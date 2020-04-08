@@ -1,6 +1,8 @@
 import os
 from django import forms
-from allmodel import company,vendor,client
+from allmodel import company,vendor,client,tax
+
+
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = company.Company
@@ -24,7 +26,7 @@ class CompanyForm(forms.ModelForm):
 
 class VendorForm(forms.ModelForm):
     class Meta:
-        model=client.Client
+        model = vendor.Vendor
         fields=[
             'name','address','mobile_no','state','city','pin_no'
         ]
@@ -41,9 +43,9 @@ class VendorForm(forms.ModelForm):
         }
 
 
-class clientForm(forms.ModelForm):
+class ClientForm(forms.ModelForm):
     class Meta:
-        model = vendor.Vendor
+        model=client.Client
         fields = [
             'name', 'address', 'mobile_no', 'state', 'city', 'pin_no'
         ]
@@ -58,3 +60,18 @@ class clientForm(forms.ModelForm):
             'pin_no': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
         }
 
+class TaxForm(forms.ModelForm):
+    class Meta:
+        model = tax.Tax
+        fields = [
+            'tax_name', 'tax_percentage', 'cgsct', 'sgsct', 'igsct'
+        ]
+
+        widgets = {
+
+            'tax_name': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'tax_percentage': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'cgsct': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'sgsct': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'igsct': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+        }

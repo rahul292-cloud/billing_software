@@ -5,6 +5,8 @@ Comapany Edit Form
 
 {%block content %}
 <form action="" method="post">
+      <div class="form-row mx-3">
+
     {% csrf_token %}
     <div class="form-group col-md-5">
         <label for="exampleInputName">Comapny Name</label>
@@ -76,11 +78,12 @@ Comapany Edit Form
             {{editForm.pin_no}}
         </div>
     </div>
-
+</div>
 
 
     <button type="submit" class="btn btn-primary mx-3">Update</button>
      <a class="btn btn-danger" href="{% url 'company_view'%}">Cancel</a>
+
 </form>
 
 {% endblock%}
