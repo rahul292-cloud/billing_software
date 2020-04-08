@@ -18,10 +18,13 @@ from . import views
 
 urlpatterns = [
     path('',views.index,name='index' ),
+    path('register',views.RegisterPage.as_view(), {'register': ''}, name='register' ),
+    path('login',views.LoginPage.as_view(), {'login': ''}, name='login'),
+    path('logout',views.logoutUser, name='logout' ),
+    path('user/', views.userPage, name="user-page"),
     path('client_form',views.client_form,name='client_form' ),
     path('vendor_form',views.vendor_form,name='vendor_form' ),
     path('tax_form',views.tax_form,name='tax_form' ),
-    # path('company_view',views.company_view,name='company_view' ),
     path('company_form/', views.Company.as_view(), {'company_form': ''}, name="company_form"),
     path('company_view/', views.Company.as_view(), {'company_view': ''}, name="company_view"),
     path('company_edit_form/<int:object_id>', views.CompanyEdit.as_view(), {'company_edit_form': ''}, name="company_edit_form"),
