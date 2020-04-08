@@ -1,0 +1,44 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}
+Tax Details
+{% endblock %}
+
+
+{% block content %}
+<div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">GST Name</th>
+        <th scope="col">GST Percenyage</th>
+        <th scope="col">CGST</th>
+        <th scope="col">SGST</th>
+        <th scope="col">IGST</th>
+    </tr>
+    </thead>
+    {% for tax in form %}
+    <tbody>
+    <tr>
+        <td></td>
+        <td>{{tax.tax_name}}</td>
+        <td>{{tax.tax_percentage}}</td>
+        <td>{{tax.cgsct}}</td>
+        <td>{{tax.sgsct}}</td>
+        <td>{{tax.igsct}}</td>
+
+        <td><a class="btn btn-primary" href="{% url 'tax_edit_form' tax.pk  %}">Edit</a></td>
+        <td><a class="btn btn-danger" href="{% url 'tax_delete' tax.pk %}">Delete</a></td>
+
+    </tr>
+    </tbody>
+
+    {% endfor %}
+
+</table>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'dashboard/base.html'%}
 {% block title %}
-Vendor
+Vendor Edit
 {% endblock %}
 
 {%block content %}
@@ -10,44 +10,44 @@ Vendor
     <div class="form-group col-md-5">
         <label for="exampleInputName">Name</label>
         <div id="exampleInputName" name="name">
-            {{vendor.name}}
+            {{editForm.name}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
         <label for="exampleInputAddress">Address</label>
         <div id="exampleInputAddress" name="address">
-            {{vendor.address}}
+            {{editForm.address}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
         <label for="exampleInputMobile">Mobile Number</label>
         <div id="exampleInputMobile" name="mobile">
-            {{vendor.mobile_no}}
+            {{editForm.mobile_no}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
         <label for="exampleInputState">State</label>
         <div id="exampleInputState" name="state">
-            {{vendor.state}}
+            {{editForm.state}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
         <label for="exampleInputCity">City</label>
         <div id="exampleInputCity" name="city">
-            {{vendor.city}}
+            {{editForm.city}}
         </div>
     </div>
     <div class="form-group col-md-5">
         <label for="exampleInputPin">Pin No</label>
         <div id="exampleInputPin" name="pin">
-            {{vendor.pin_no}}
+            {{editForm.pin_no}}
         </div>
     </div>
-    <button type="submit" class="btn btn-primary mx-3">Submit</button>
+    <button type="submit" class="btn btn-primary mx-3">Update</button>
 </form>
 
 {% endblock%}

@@ -4,14 +4,14 @@ from django.views.generic import View
 from django.http import HttpResponse
 from django.contrib import messages
 from .forms import *
-from allmodel import company
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users, admin_only
 from django.contrib.auth.models import Group
 
-# Create your views here.
+from allmodel import company,vendor,client,tax
+
 
 class RegisterPage(View):
     register_template = "dashboard/register.html"
@@ -68,7 +68,7 @@ def userPage(request):
 	context = {}
 	return render(request, 'dashboard/user.html', context)
 
-# @login_required(login_url='login')
+
 class Company(View):
     form = CompanyForm
     model = company.Company
@@ -79,11 +79,10 @@ class Company(View):
     @method_decorator(login_required(login_url='login'))
     @method_decorator(allowed_users(allowed_roles=['admin']))
     def get(self, request, *args, **kwargs):
-
         if 'company_form' in kwargs:
             return render(request, self.companyForm_template, {'form': self.form()})
         elif 'company_view' in kwargs:
-            model= company.Company.objects.all()
+            model= self.model.objects.all()
             return render(request, self.companyView_template, {'form': model})
 
 
@@ -107,12 +106,10 @@ class Company(View):
             )
             return redirect(to="company_view")
 
-# @login_required(login_url='login')
+
 class CompanyEdit(View):
     form = CompanyForm
     model = company.Company
-    companyForm_template = 'dashboard/company_form.html'
-    companyView_template = 'dashboard/company_view.html'
     company_edit_Form_template = 'dashboard/company_form_edit.html'
 
     @method_decorator(login_required(login_url='login'))
@@ -143,9 +140,9 @@ class CompanyEdit(View):
             )
             return redirect(to="company_view")
 
-# @login_required(login_url='login')
+
 class CompanyDelete(View):
-    company_delete_template = 'dashboard/delete.html'
+    company_delete_template = 'dashboard/company_delete.html'
     model = company.Company
 
     @method_decorator(login_required(login_url='login'))
@@ -154,6 +151,7 @@ class CompanyDelete(View):
         if 'company_delete' in kwargs:
             item = self.model.objects.get(id=kwargs.get("object_id"))
             return render(request, self.company_delete_template, {'item':item})
+
     def post(self, request, *args, **kwargs):
         item = self.model.objects.get(id=kwargs.get("object_id"))
         item.delete()
@@ -161,10 +159,35 @@ class CompanyDelete(View):
 
 
 
+class Vendor(View):
+    form=VendorForm
+    model=vendor.Vendor
+    vendorFrom_templates='dashboard/vendor_form.html'
+    vendorView_templates='dashboard/vendor_view.html'
 
-# def company_view(request):
-    # model=company.Company.objects.all()
-#     return render(request,'dashboard/company_view.html')
+    @method_decorator(login_required(login_url='login'))
+    @method_decorator(allowed_users(allowed_roles=['admin']))
+    def get(self,request,*args,**kwargs):
+        if 'vendor_form' in kwargs:
+            return render(request,self.vendorFrom_templates,{'vendor':self.form()})
+        elif 'vendor_view' in kwargs:
+            model = vendor.Vendor.objects.all()
+            return render(request, self.vendorView_templates, {'form': model})
+
+    def post(self,request,*args,**kwargs):
+         form=self.form(request.POST)
+         if form.is_valid():
+             vendor_name = form.cleaned_data.get('name')
+             vendor_address=form.cleaned_data.get('address')
+             mobile_no=form.cleaned_data.get('mobile_no')
+             state=form.cleaned_data.get('state')
+             city=form.cleaned_data.get('city')
+             pin_no=form.cleaned_data.get('pin_no')
+             self.model.objects.create(
+                 name=vendor_name,address=vendor_address,mobile_no=mobile_no,state=state,city=city,pin_no=pin_no
+             )
+             return redirect(to='vendor_view')
+
 
 
 @login_required(login_url='login')
@@ -172,11 +195,194 @@ class CompanyDelete(View):
 def index(request):
     return render(request,'dashboard/base.html')
 
-def client_form(request):
-    return render(request,'dashboard/clent_form.html')
+class VendorEdit(View):
+    form = VendorForm
+    model = vendor.Vendor
+    vendorEdit_templates = 'dashboard/vendor_edit.html'
 
-def vendor_form(request):
-    return render(request,'dashboard/vendor_form.html')
+    @method_decorator(login_required(login_url='login'))
+    @method_decorator(allowed_users(allowed_roles=['admin']))
+    def get(self,request,*args,**kwargs):
+     if 'vendor_edit_form' in kwargs:
+        recored=self.model.objects.get(id=kwargs.get('object_id'))
+        editform=self.form(instance=recored)
+        return render(request,self.vendorEdit_templates,{'editForm':editform})
 
-def tax_form(request):
-    return render(request,'dashboard/tax_form.html')
+    def post(self,request,*args,**kwargs):
+        form=self.form(request.POST)
+        if form.is_valid():
+            vendor_name = form.cleaned_data.get('name')
+            vendor_address = form.cleaned_data.get('address')
+            mobile_no = form.cleaned_data.get('mobile_no')
+            state = form.cleaned_data.get('state')
+            city = form.cleaned_data.get('city')
+            pin_no = form.cleaned_data.get('pin_no')
+            self.model.objects.filter(pk=kwargs.get('object_id')).update(
+                name=vendor_name, address=vendor_address, mobile_no=mobile_no, state=state, city=city, pin_no=pin_no
+            )
+            return redirect(to='vendor_view')
+
+class VendorDelete(View):
+    vendor_delete_templates='dashboard/vendor_delete.html'
+    model=vendor.Vendor
+
+    @method_decorator(login_required(login_url='login'))
+    @method_decorator(allowed_users(allowed_roles=['admin']))
+    def get(self,request,*args,**kwargs):
+        if 'vendor_delete' in kwargs:
+            delete_form=self.model.objects.get(id=kwargs.get("object_id"))
+            return render(request, self.vendor_delete_templates,{'item':delete_form})
+
+    def post(self,request,*args,**kwargs):
+        item = self.model.objects.get(id=kwargs.get("object_id"))
+        item.delete()
+        return redirect(to="vendor_view")
+
+
+
+class Client(View):
+    form=ClientForm
+    model=client.Client
+    clientForm_templates='dashboard/client_form.html'
+    clientView_templates='dashboard/client_view.html'
+
+    @method_decorator(login_required(login_url='login'))
+    @method_decorator(allowed_users(allowed_roles=['admin']))
+    def get(self,request,*args,**kwargs):
+        if 'client_form' in kwargs:
+            return render(request,self.clientForm_templates,{'client':self.form()})
+        elif 'client_view' in kwargs:
+            model = self.model.objects.all()
+            return render(request, self.clientView_templates, {'form': model})
+
+    def post(self,request,*args,**kwargs):
+         form=self.form(request.POST)
+         if form.is_valid():
+             client_name = form.cleaned_data.get('name')
+             client_address=form.cleaned_data.get('address')
+             mobile_no=form.cleaned_data.get('mobile_no')
+             state=form.cleaned_data.get('state')
+             city=form.cleaned_data.get('city')
+             pin_no=form.cleaned_data.get('pin_no')
+             self.model.objects.create(
+                 name=client_name,address=client_address,mobile_no=mobile_no,state=state,city=city,pin_no=pin_no
+             )
+             return redirect(to='client_view')
+
+class ClientEdit(View):
+    form=ClientForm
+    model=client.Client
+    clientEdit_templates='dashboard/client_edit.html'
+
+    @method_decorator(login_required(login_url='login'))
+    @method_decorator(allowed_users(allowed_roles=['admin']))
+    def get(self,request,*args,**kwargs):
+     if 'client_edit_form' in kwargs:
+        recored=self.model.objects.get(id=kwargs.get('object_id'))
+        editform=self.form(instance=recored)
+        return render(request,self.clientEdit_templates,{'editForm':editform})
+
+    def post(self,request,*args,**kwargs):
+        form=self.form(request.POST)
+        if form.is_valid():
+            vendor_name = form.cleaned_data.get('name')
+            vendor_address = form.cleaned_data.get('address')
+            mobile_no = form.cleaned_data.get('mobile_no')
+            state = form.cleaned_data.get('state')
+            city = form.cleaned_data.get('city')
+            pin_no = form.cleaned_data.get('pin_no')
+            self.model.objects.filter(pk=kwargs.get('object_id')).update(
+                name=vendor_name, address=vendor_address, mobile_no=mobile_no, state=state, city=city, pin_no=pin_no
+            )
+            return redirect(to='client_view')
+
+class ClientDelete(View):
+    client_delete_templates='dashboard/client_delete.html'
+    model=client.Client
+
+    @method_decorator(login_required(login_url='login'))
+    @method_decorator(allowed_users(allowed_roles=['admin']))
+    def get(self,request,*args,**kwargs):
+        if 'client_delete' in kwargs:
+            delete_form=self.model.objects.get(id=kwargs.get("object_id"))
+            return render(request, self.client_delete_templates,{'item':delete_form})
+
+    def post(self,request,*args,**kwargs):
+        item = self.model.objects.get(id=kwargs.get("object_id"))
+        item.delete()
+        return redirect(to="client_view")
+
+
+class Tax(View):
+    form=TaxForm
+    model=tax.Tax
+    taxForm_templates='dashboard/tax_form.html'
+    taxView_templates='dashboard/tax_view.html'
+
+    @method_decorator(login_required(login_url='login'))
+    @method_decorator(allowed_users(allowed_roles=['admin']))
+    def get(self,request,*args,**kwargs):
+        if 'tax_form' in kwargs:
+            return render(request,self.taxForm_templates,{'tax':self.form()})
+        elif 'tax_view' in kwargs:
+            model = self.model.objects.all()
+            return render(request, self.taxView_templates, {'form': model})
+
+    def post(self,request,*args,**kwargs):
+         form=self.form(request.POST)
+         if form.is_valid():
+             tax_name = form.cleaned_data.get('tax_name')
+             tax_percentage=form.cleaned_data.get('tax_percentage')
+             cgsct=form.cleaned_data.get('cgsct')
+             sgsct=form.cleaned_data.get('sgsct')
+             igsct=form.cleaned_data.get('igsct')
+             self.model.objects.create(
+                 tax_name=tax_name,tax_percentage=tax_percentage,cgsct=cgsct,sgsct=sgsct,igsct=igsct
+             )
+             return redirect(to='tax_view')
+
+class TaxEdit(View):
+    form=TaxForm
+    model=tax.Tax
+    taxEdit_templates='dashboard/tax_edit.html'
+
+    @method_decorator(login_required(login_url='login'))
+    @method_decorator(allowed_users(allowed_roles=['admin']))
+    def get(self,request,*args,**kwargs):
+     if 'tax_edit_form' in kwargs:
+        recored=self.model.objects.get(id=kwargs.get('object_id'))
+        editform=self.form(instance=recored)
+        return render(request,self.taxEdit_templates,{'editForm':editform})
+
+    def post(self,request,*args,**kwargs):
+        form=self.form(request.POST)
+        if form.is_valid():
+            tax_name = form.cleaned_data.get('tax_name')
+            tax_percentage = form.cleaned_data.get('tax_percentage')
+            cgsct = form.cleaned_data.get('cgsct')
+            sgsct = form.cleaned_data.get('sgsct')
+            igsct = form.cleaned_data.get('igsct')
+            self.model.objects.filter(pk=kwargs.get('object_id')).update(
+                tax_name=tax_name, tax_percentage=tax_percentage, cgsct=cgsct, sgsct=sgsct, igsct=igsct
+            )
+            return redirect(to='tax_view')
+
+class TaxDelete(View):
+    tax_delete_templates='dashboard/tax_delete.html'
+    model=tax.Tax
+
+    @method_decorator(login_required(login_url='login'))
+    @method_decorator(allowed_users(allowed_roles=['admin']))
+    def get(self,request,*args,**kwargs):
+        if 'tax_delete' in kwargs:
+            delete_form=self.model.objects.get(id=kwargs.get("object_id"))
+            return render(request, self.tax_delete_templates,{'item':delete_form})
+
+    def post(self,request,*args,**kwargs):
+        item = self.model.objects.get(id=kwargs.get("object_id"))
+        item.delete()
+        return redirect(to="tax_view")
+
+
+def purchase(request):
+    return render(request,'dashboard/purchase_form.html')

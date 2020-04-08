@@ -1,6 +1,6 @@
 {% extends 'dashboard/base.html'%}
 {% block title %}
-Vendor
+Tax Edit
 {% endblock %}
 
 {%block content %}
@@ -10,43 +10,38 @@ Vendor
     <div class="form-group col-md-5">
         <label for="exampleInputName">Name</label>
         <div id="exampleInputName" name="name">
-            {{vendor.name}}
+            {{editForm.tax_name}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
         <label for="exampleInputAddress">Address</label>
         <div id="exampleInputAddress" name="address">
-            {{vendor.address}}
+            {{editForm.tax_percentage}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
-        <label for="exampleInputMobile">Mobile Number</label>
-        <div id="exampleInputMobile" name="mobile">
-            {{vendor.mobile_no}}
+        <label for="exampleInputMobile">CGST</label>
+        <div id="exampleInputMobile" name="CGST">
+            {{editForm.cgsct}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
-        <label for="exampleInputState">State</label>
-        <div id="exampleInputState" name="state">
-            {{vendor.state}}
+        <label for="exampleInputState">SGST</label>
+        <div id="exampleInputState" name="SGST">
+            {{editForm.sgsct}}
         </div>
     </div>
 
     <div class="form-group col-md-5">
-        <label for="exampleInputCity">City</label>
-        <div id="exampleInputCity" name="city">
-            {{vendor.city}}
+        <label for="exampleInputCity">IGST</label>
+        <div id="exampleInputCity" name="IGST">
+            {{editForm.igsct}}
         </div>
     </div>
-    <div class="form-group col-md-5">
-        <label for="exampleInputPin">Pin No</label>
-        <div id="exampleInputPin" name="pin">
-            {{vendor.pin_no}}
-        </div>
-    </div>
+    
     <button type="submit" class="btn btn-primary mx-3">Submit</button>
 </form>
 
