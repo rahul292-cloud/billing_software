@@ -2,7 +2,9 @@ import os
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from allmodel import company,vendor,client,tax
+from allmodel import company,vendor,client,tax, employee
+from django.forms import ModelForm
+
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -82,3 +84,9 @@ class TaxForm(forms.ModelForm):
             'sgsct': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
             'igsct': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
         }
+
+class EmployeeForm(ModelForm):
+    class Meta:
+        model = employee.Employee
+        fields = '__all__'
+        exclude = ['user']

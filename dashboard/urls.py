@@ -8,6 +8,7 @@ urlpatterns = [
     path('login',views.LoginPage.as_view(), {'login': ''}, name='login'),
     path('logout',views.logoutUser, name='logout' ),
     path('user/', views.userPage, name="user-page"),
+    path('account/', views.accountSettings, name="account"),
 
     path('client_form/', views.Client.as_view(), {'client_form': ''}, name="client_form"),
     path('client_view/', views.Client.as_view(), {'client_view': ''}, name="client_view"),
