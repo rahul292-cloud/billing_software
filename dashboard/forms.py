@@ -2,13 +2,9 @@ import os
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-<<<<<<< HEAD
-from allmodel import company,vendor,client,tax,purchase,sub_purchase
-=======
-from allmodel import company,vendor,client,tax, employee
+from allmodel import company,vendor,client,tax,purchase,employee,sub_purchase
 from django.forms import ModelForm
 
->>>>>>> eed9d4fdfad5a936421be5c959cb7b7e2cfe5201
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -87,7 +83,6 @@ class TaxForm(forms.ModelForm):
             'igsct': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
         }
 
-<<<<<<< HEAD
 class PurchaseForm(forms.ModelForm):
     class Meta:
         model=purchase.Purchase
@@ -119,10 +114,8 @@ class Sub_PurchaseForm(forms.ModelForm):
             'serial_no':forms.TextInput(attrs={'class':'form-control'}),
             'sub_total':forms.TextInput(attrs={'class':'form-control'}),
         }
-=======
 class EmployeeForm(ModelForm):
     class Meta:
         model = employee.Employee
         fields = '__all__'
         exclude = ['user']
->>>>>>> eed9d4fdfad5a936421be5c959cb7b7e2cfe5201

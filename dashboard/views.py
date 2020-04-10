@@ -10,11 +10,8 @@ from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users, admin_only
 from django.contrib.auth.models import Group
 
-<<<<<<< HEAD
-from allmodel import company, vendor, client, tax,purchase,sub_purchase
-=======
-from allmodel import company, vendor, client, tax, employee
->>>>>>> eed9d4fdfad5a936421be5c959cb7b7e2cfe5201
+
+from allmodel import company, vendor, client, tax,purchase,sub_purchase,employee
 
 
 class RegisterPage(View):
@@ -73,11 +70,8 @@ def logoutUser(request):
     return redirect(to="login")
 
 
-<<<<<<< HEAD
-=======
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['customer'])
->>>>>>> eed9d4fdfad5a936421be5c959cb7b7e2cfe5201
 def userPage(request):
     context = {}
     return render(request, 'dashboard/user.html', context)
@@ -449,5 +443,5 @@ class Purchase(View):
 
 
 
-def purchase(request):
-    return render(request, 'dashboard/purchase_form.html')
+# def purchase(request):
+#     return render(request, 'dashboard/purchase_form.html')
