@@ -10,7 +10,11 @@ from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users, admin_only
 from django.contrib.auth.models import Group
 
+<<<<<<< HEAD
 from allmodel import company, vendor, client, tax,purchase,sub_purchase
+=======
+from allmodel import company, vendor, client, tax, employee
+>>>>>>> eed9d4fdfad5a936421be5c959cb7b7e2cfe5201
 
 
 class RegisterPage(View):
@@ -26,12 +30,16 @@ class RegisterPage(View):
     def post(self, request, *args, **kwargs):
         form = CreateUserForm(request.POST)
         print(form.is_valid())
+        print("check")
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
 
             group = Group.objects.get(name='customer')
             user.groups.add(group)
+            emp = employee.Employee.objects.create(
+                user=user
+            )
 
             messages.success(request, 'Account was created for ' + username)
             return redirect(to='login')
@@ -65,9 +73,30 @@ def logoutUser(request):
     return redirect(to="login")
 
 
+<<<<<<< HEAD
+=======
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['customer'])
+>>>>>>> eed9d4fdfad5a936421be5c959cb7b7e2cfe5201
 def userPage(request):
     context = {}
     return render(request, 'dashboard/user.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['customer'])
+def accountSettings(request):
+	emp = request.user.employee
+	form = EmployeeForm(instance=emp)
+
+	if request.method == 'POST':
+		form = EmployeeForm(request.POST, request.FILES,instance=emp)
+		if form.is_valid():
+			form.save()
+
+
+	context = {'form':form}
+	return render(request, 'dashboard/account_settings.html', context)
+
 
 
 class Company(View):
@@ -78,7 +107,7 @@ class Company(View):
     company_edit_Form_template = 'dashboard/company_form_edit.html'
 
     @method_decorator(login_required(login_url='login'))
-    @method_decorator(allowed_users(allowed_roles=['admin']))
+    @method_decorator(allowed_users(allowed_roles=['admin', 'customer']))
     def get(self, request, *args, **kwargs):
         if 'company_form' in kwargs:
             return render(request, self.companyForm_template, {'form': self.form()})

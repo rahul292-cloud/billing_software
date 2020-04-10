@@ -8,6 +8,11 @@ urlpatterns = [
     path('login',views.LoginPage.as_view(), {'login': ''}, name='login'),
     path('logout',views.logoutUser, name='logout' ),
     path('user/', views.userPage, name="user-page"),
+<<<<<<< HEAD
+=======
+    path('account/', views.accountSettings, name="account"),
+
+>>>>>>> eed9d4fdfad5a936421be5c959cb7b7e2cfe5201
     path('client_form/', views.Client.as_view(), {'client_form': ''}, name="client_form"),
     path('client_view/', views.Client.as_view(), {'client_view': ''}, name="client_view"),
     path('client_edit_form/<int:object_id>', views.ClientEdit.as_view(), {'client_edit_form': ''},
