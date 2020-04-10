@@ -2,7 +2,7 @@ import os
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from allmodel import company,vendor,client,tax
+from allmodel import company,vendor,client,tax,purchase,sub_purchase
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -30,7 +30,6 @@ class CompanyForm(forms.ModelForm):
             'pin_no': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
         }
 
-
 class VendorForm(forms.ModelForm):
     class Meta:
         model = vendor.Vendor
@@ -48,7 +47,6 @@ class VendorForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
             'pin_no': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
         }
-
 
 class ClientForm(forms.ModelForm):
     class Meta:
@@ -81,4 +79,36 @@ class TaxForm(forms.ModelForm):
             'cgsct': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
             'sgsct': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
             'igsct': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+        }
+
+class PurchaseForm(forms.ModelForm):
+    class Meta:
+        model=purchase.Purchase
+        fields=[
+            'purchase_invoice','client_name','purchase_date','purchase_address','reference_no','Final_Amount'
+        ]
+        widgets = {
+            'purchase_invoice': forms.TextInput(attrs={'class':'form-control'}),
+            'client_name':forms.TextInput(attrs={'class':'form-control'}),
+            'purchase_date':forms.TextInput(attrs={'class':'form-control'}),
+            'purchase_address':forms.TextInput(attrs={'class':'form-control'}),
+            'reference_no':forms.TextInput(attrs={'class':'form-control'}),
+            'Final_Amount':forms.TextInput(attrs={'class':'form-control'}),
+        }
+
+class Sub_PurchaseForm(forms.ModelForm):
+    class Meta:
+        model=sub_purchase.Sub_purchase
+        fields=[
+            'product_name','product_code','qty','unit_price','tax_per','amount','serial_no','sub_total'
+        ]
+        widgets = {
+            'product_name': forms.TextInput(attrs={'class':'form-control'}),
+            'product_code':forms.TextInput(attrs={'class':'form-control'}),
+            'qty':forms.TextInput(attrs={'class':'form-control'}),
+            'unit_price':forms.TextInput(attrs={'class':'form-control'}),
+            'tax_per':forms.TextInput(attrs={'class':'form-control'}),
+            'amount':forms.TextInput(attrs={'class':'form-control'}),
+            'serial_no':forms.TextInput(attrs={'class':'form-control'}),
+            'sub_total':forms.TextInput(attrs={'class':'form-control'}),
         }

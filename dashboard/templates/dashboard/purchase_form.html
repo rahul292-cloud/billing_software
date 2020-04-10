@@ -2,32 +2,184 @@
 {% block title %}
 Purchase Add
 {% endblock %}
+{% block css %}
+
+{% endblock %}
 
 {%block content %}
-<div class="container my-2">
 
-    <div class="form-row mx-2">
-        <label for="inputState">Item Code</label>
+<form action="" method="post">
 
-        <div class="col-md-4">
-            <input type="text" class="form-control" id="inputState">
+    {% csrf_token %}
+
+    <div class="border border-primary border-bottom mx-3">
+
+        <div class="form-row mx-3 my-1">
+
+            <div class="form-group col-lg-5 col-md-4 col-sm-12">
+                <label for="invoice">Purchase invoice</label>
+                <div id="invoice" name="invoice">
+                    {{purchase.purchase_invoice}}
+                </div>
+            </div>
+
+
+            <div class="form-group  col-lg-5 col-md-4 col-sm-12">
+                <label for="exampleInputclientName">client Name</label>
+                <div id="exampleInputclientName" name="clien_name">
+                    {{purchase.client_name}}
+                </div>
+            </div>
+
+            <div class="form-group col-lg-5 col-md-4 col-sm-12">
+                <label for="exampleInputPurchaseDate">Purchase Date</label>
+                <div id="exampleInputPurchaseDate" name="purchase_date">
+                    {{purchase.purchase_date}}
+                </div>
+            </div>
+
+            <div class="form-group col-lg-5 col-md-4 col-sm-12">
+                <label for="exampleInputPurchaseAddress">Purchase Address</label>
+                <div id="exampleInputPurchaseAddress" name="purchas_address">
+                    {{purchase.purchase_address}}
+                </div>
+            </div>
+
+            <div class="form-group col-lg-5 col-md-5 col-sm-12">
+                <label for="exampleInputRefNo">Ref No</label>
+                <div id="exampleInputRefNo" name="ref_no">
+                    {{purchase.reference_no}}
+                </div>
+            </div>
+
 
         </div>
-        <label for="inputZip">Item Name</label>
+        <div class="form-row mx-3 my-1">
 
-        <div class="col-md-2">
-            <input type="text" class="form-control" id="inputZip">
+            <div class="form-group col-lg-2 col-md-2 col-sm-12">
+                <label for="exampleInputProductCode">Product Code</label>
+                <div id="exampleInputProductCode" name="product_code">
+                    {{sub_purchase.product_code}}
+                </div>
+            </div>
+
+            <div class="form-group col-lg-2 col-md-2 col-sm-12">
+                <label for="exampleInputProductName">Product Name</label>
+                <div id="exampleInputProductName" name="product_name">
+                    {{sub_purchase.product_name}}
+                </div>
+            </div>
+
+
+            <div class="form-group col-lg-2 col-md-2 col-sm-12">
+                <label for="exampleInputQty">Qty</label>
+                <div id="exampleInputQty" name="qty">
+                    {{sub_purchase.qty}}
+                </div>
+            </div>
+
+            <div class="form-group col-lg-2 col-md-2 col-sm-12">
+                <label for="exampleInputUnitPrice">Unit Price</label>
+                <div id="exampleInputUnitPrice" name="unit_price">
+                    {{sub_purchase.unit_price}}
+                </div>
+            </div>
+
+            <div class="form-group col-lg-2 col-md-2 col-sm-12">
+                <label for="exampleInputUnitPrice">Tax</label>
+                <div id="exampleInputTax" name="tax">
+                    {{sub_purchase.tax_per}}
+                </div>
+            </div>
+
+            <div class="form-group col-lg-2 col-md-2 col-sm-12">
+                <label for="exampleInputUnitPrice">Amount</label>
+                <div id="exampleInputAmount" name="amount">
+                    {{sub_purchase.amount}}
+                </div>
+            </div>
+
+            <div class="form-group col-lg-2 col-md-4 col-sm-12">
+                <label for="exampleInputSerial">Serial No</label>
+                <div id="exampleInputSerial" name="serial_no">
+                    {{sub_purchase.serial_no}}
+                </div>
+            </div>
+
         </div>
 
+        <div class="form-row mx-3 my-1">
 
-        <button class="btn btn-danger">-</button>
+            <div id="param"></div>
 
+        </div>
+        <a class="btn btn-primary mx-3" id="addParam">Add New Line</a>
+
+        <div class="form-row mx-3 my-1">
+
+
+            <div class="form-group col-lg-4 col-md-5 col-sm-12">
+                <label for="exampleInputSubTotal">Sub Toatal</label>
+                <div id="exampleInputSubTotal" name="Sub_total">
+                    {{sub_purchase.sub_total}}
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="form-row mx-3 my-1">
+
+
+            <div class="form-group col-lg-6 col-md-5 col-sm-12">
+                <label for="exampleInputFinaleAmount">Finale Amount</label>
+                <div id="exampleInputFinaleAmount" name="final_amount">
+                    {{purchase.Final_Amount}}
+                </div>
+            </div>
+
+
+        </div>
+
+        <!--<div class="container my-2">-->
 
     </div>
-    <div id="param"></div>
-    <button class="btn btn-primary my-2" id="addParam">Add New Line</button>
 
-</div>
+    <button type="submit" class="btn btn-primary my-1 mx-3">Add</button>
+    <!--    <a class="btn btn-danger" href="{% url 'company_view'%}">Cancel</a>-->
+
+</form>
+<!--<div>-->
+
+<!--    <label for="inputState">Item Code</label>-->
+
+<!--    &lt;!&ndash;        <div class="col-md-4">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <input type="text" class="form-control" id="inputState">&ndash;&gt;-->
+<!--    <div id="inputState" name="Address">-->
+<!--        {{sub_purchase.tax_per}}-->
+<!--    </div>-->
+
+
+<!--    &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--    <label for="inputZip">Item Name</label>-->
+
+<!--    &lt;!&ndash;        <div class="col-md-2">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <input type="text" class="form-control" id="inputZip">&ndash;&gt;-->
+<!--    &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--    <div id="inputZip" name="Address">-->
+<!--        {{sub_purchase.amount}}-->
+<!--    </div>-->
+
+
+<!--&lt;!&ndash;    <button class="btn btn-danger">-</button>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <div id="param"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <a class="btn btn-primary my-2" id="addParam">Add New Line</a>&ndash;&gt;-->
+
+
+<!--</div>-->
+
+<!--</div>-->
 
 {% block javascript %}
 <script>
@@ -45,27 +197,84 @@ let div = document.createElement("div");
 
     addParam.addEventListener('click',()=>{
  let params =document.getElementById("param");
-   let string =`
-   <div class="container my-2">
+<!--   let string =`-->
+<!--   <div class="container my-2">-->
 
-        <div class="form-row my-2">
-                <label for="inputState">Item Code</label>
+<!--        <div class="form-row my-2">-->
+<!--                <label for="inputState">Item Code</label>-->
 
-            <div class="col-md-4">
-                <input type="text" class="form-control" id="inputState">
+<!--            <div class="col-md-4">-->
+<!--                <input type="text" class="form-control" id="inputState">-->
 
+<!--            </div>-->
+<!--                            <label for="inputZip">Item Name</label>-->
+
+<!--            <div class="col-md-2">-->
+<!--                <input type="text" class="form-control" id="inputZip">-->
+<!--            </div>-->
+<!--             <button class="btn btn-danger deleteParam">-</button>-->
+
+<!--        </div>-->
+<!--        </div>  `;-->
+
+ let string =`
+    <div class="form-row mx-1">
+
+         <div class="form-group col-lg-2 col-md-2 col-sm-12">
+            <label for="exampleInputProductCode">Product Code</label>
+            <div id="exampleInputProductCode" name="product_code">
+                {{sub_purchase.product_code}}
             </div>
-                            <label for="inputZip">Item Name</label>
-
-            <div class="col-md-2">
-                <input type="text" class="form-control" id="inputZip">
-            </div>
-             <button class="btn btn-danger deleteParam">-</button>
-
         </div>
-        </div>  `;
+        <div class="form-group col-lg-2 col-md-2 col-sm-12">
+            <label for="exampleInputProductName">Product Name</label>
+            <div id="exampleInputProductName" name="product_name">
+                {{sub_purchase.product_name}}
+            </div>
+        </div>
+
+
+        <div class="form-group col-lg-2 col-md-2 col-sm-12">
+            <label for="exampleInputQty">Qty</label>
+            <div id="exampleInputQty" name="qty">
+                {{sub_purchase.qty}}
+            </div>
+        </div>
+
+        <div class="form-group col-lg-2 col-md-2 col-sm-12">
+            <label for="exampleInputUnitPrice">Unit Price</label>
+            <div id="exampleInputUnitPrice" name="unit_price">
+                {{sub_purchase.unit_price}}
+            </div>
+        </div>
+
+        <div class="form-group col-lg-2 col-md-2 col-sm-12">
+            <label for="exampleInputUnitPrice">Tax</label>
+            <div id="exampleInputTax" name="tax">
+                {{sub_purchase.tax_per}}
+            </div>
+        </div>
+
+        <div class="form-group col-lg-2 col-md-2 col-sm-12">
+            <label for="exampleInputUnitPrice">Amount</label>
+            <div id="exampleInputAmount" name="amount">
+                {{sub_purchase.amount}}
+            </div>
+        </div>
+
+        <div class="form-group col-lg-2 col-md-4 col-sm-12">
+            <label for="exampleInputSerial">Serial No</label>
+            <div id="exampleInputSerial" name="serial_no">
+                {{sub_purchase.serial_no}}
+            </div>
+        </div>
+        <button class="btn btn-danger deleteParam">-</button>
+    </div> `;
+
 
          let paramElement=getElementFromString(string);
+                 console.log(paramElement);
+
         params.append(paramElement);
 
         var deleteParam =document.getElementsByClassName("deleteParam");
@@ -80,6 +289,18 @@ let div = document.createElement("div");
 
 
     });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -8,7 +8,6 @@ urlpatterns = [
     path('login',views.LoginPage.as_view(), {'login': ''}, name='login'),
     path('logout',views.logoutUser, name='logout' ),
     path('user/', views.userPage, name="user-page"),
-
     path('client_form/', views.Client.as_view(), {'client_form': ''}, name="client_form"),
     path('client_view/', views.Client.as_view(), {'client_view': ''}, name="client_view"),
     path('client_edit_form/<int:object_id>', views.ClientEdit.as_view(), {'client_edit_form': ''},
@@ -34,6 +33,13 @@ urlpatterns = [
          name="company_edit_form"),
     path('company_delete/<int:object_id>', views.CompanyDelete.as_view(), {'company_delete': ''},
          name="company_delete"),
+
+    path('purchase_form/', views.Purchase.as_view(), {'purchase_form': ''}, name="purchase_form"),
+    # path('company_view/', views.Company.as_view(), {'company_view': ''}, name="company_view"),
+    # path('company_edit_form/<int:object_id>', views.CompanyEdit.as_view(), {'company_edit_form': ''},
+    #      name="company_edit_form"),
+    # path('company_delete/<int:object_id>', views.CompanyDelete.as_view(), {'company_delete': ''},
+    #      name="company_delete"),
 
     path('purchase', views.purchase, name='purchase'),
 
