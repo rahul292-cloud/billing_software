@@ -100,7 +100,7 @@ class Company(View):
     company_edit_Form_template = 'dashboard/company_form_edit.html'
 
     @method_decorator(login_required(login_url='login'))
-    @method_decorator(allowed_users(allowed_roles=['admin']))
+    @method_decorator(allowed_users(allowed_roles=['admin', 'customer']))
     def get(self, request, *args, **kwargs):
         if 'company_form' in kwargs:
             return render(request, self.companyForm_template, {'form': self.form()})
