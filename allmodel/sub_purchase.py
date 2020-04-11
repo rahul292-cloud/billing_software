@@ -19,5 +19,11 @@ class Sub_purchase(BaseModel):
     def __str__(self):
         return self.purchase
 
+    # @property
+    # def net_salary(self):
+    #     self.qty * self.unit_price
+    #     return self.amount
+
+
 
 

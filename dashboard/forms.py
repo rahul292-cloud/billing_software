@@ -107,13 +107,19 @@ class Sub_PurchaseForm(forms.ModelForm):
         widgets = {
             'product_name': forms.TextInput(attrs={'class':'form-control'}),
             'product_code':forms.TextInput(attrs={'class':'form-control'}),
-            'qty':forms.TextInput(attrs={'class':'form-control'}),
-            'unit_price':forms.TextInput(attrs={'class':'form-control'}),
+            'qty':forms.TextInput(attrs={'class':'form-control','id':'qty'}),
+            'unit_price':forms.TextInput(attrs={'class':'form-control','id':'unit'}),
             'tax_per':forms.TextInput(attrs={'class':'form-control'}),
             'amount':forms.TextInput(attrs={'class':'form-control'}),
             'serial_no':forms.TextInput(attrs={'class':'form-control'}),
             'sub_total':forms.TextInput(attrs={'class':'form-control'}),
         }
+
+        @property
+        def qty_unit(self):
+            return
+
+
 class EmployeeForm(ModelForm):
     class Meta:
         model = employee.Employee
