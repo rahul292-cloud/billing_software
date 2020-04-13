@@ -37,8 +37,8 @@ urlpatterns = [
     path('company_delete/<int:object_id>', views.CompanyDelete.as_view(), {'company_delete': ''},
          name="company_delete"),
 
-    path('purchase_form/', views.Purchase.as_view(), {'purchase_form': ''}, name="purchase_form"),
-    # path('company_view/', views.Company.as_view(), {'company_view': ''}, name="company_view"),
+    # path('purchase_form/', views.Purchase.as_view(), {'purchase_form': ''}, name="purchase_form"),
+    # path('purchase_form/', views.PurchaseView.as_view(), {'purchase_form': ''}, name="purchase_form"),
     # path('company_edit_form/<int:object_id>', views.CompanyEdit.as_view(), {'company_edit_form': ''},
     #      name="company_edit_form"),
     # path('company_delete/<int:object_id>', views.CompanyDelete.as_view(), {'company_delete': ''},

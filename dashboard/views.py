@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.http import HttpResponse
+from django.http import JsonResponse
+from django.core import serializers
 from django.contrib import messages
 from .forms import *
 from django.contrib.auth.forms import UserCreationForm
@@ -9,8 +11,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users, admin_only
 from django.contrib.auth.models import Group
-
-
+# from django.http import JsonResponse
+# from django.core import serializers
 from allmodel import company, vendor, client, tax,purchase,sub_purchase,employee
 
 
@@ -409,35 +411,90 @@ class TaxDelete(View):
         item.delete()
         return redirect(to="tax_view")
 
-class Purchase(View):
-    form1=PurchaseForm
-    form2=Sub_PurchaseForm
-    model1=purchase.Purchase
-    model2=sub_purchase.Sub_purchase
-    purchaseForm_templates='dashboard/purchase_form.html'
+# class PurchaseView(View):
+#     form1=PurchaseForm
+#     form2=Sub_PurchaseForm
+#     model1=purchase.Purchase
+#     model2=sub_purchase.Sub_purchase
+#     purchaseForm_templates='dashboard/purchase_form.html'
+#
+#     def get(self, request, *args, **kwargs):
+#         if 'purchase_form' in kwargs:
+#             context = {
+#                 'purchase': self.form1(), 'sub_purchase': self.form2()
+#             }
+#             return render(request, self.purchaseForm_templates, context)
+#
+#     def post(self,request,*args,**kwargs):
+#
+#         if self.request.is_ajax and self.request.method == "POST":
+#             number=[self.request.method=="POST"].count('self.request.method=="POST"')
+#
+#             # form1 = self.form1(self.request.POST)
+#             form2 = self.form2(self.request.POST)
+#
+#             print(form2)
+#             print(form2.is_valid())
+#             if form2.is_valid() :
+#                 instance = form2.save()
+#                 ser_instance = serializers.serialize('json', [instance, ])
+#                 # send to client side.
+#                 return JsonResponse({"instance": ser_instance}, status=200)
+#             else:
+#                 return JsonResponse({"error": form2.errors}, status=400)
+#
+#
+#         return JsonResponse({"error": ""}, status=400)
 
-    def get(self,request,*args,**kwargs):
-        if'purchase_form' in kwargs:
-            context={
-                'purchase':self.form1(),'sub_purchase':self.form2()
-            }
-            return render(request,self.purchaseForm_templates,context)
-    def post(self,request,*args,**kwargs):
-        form1=self.form1(request.POST)
-        form2=self.form2(request.POST)
-        if self.form1.is_valid():
-            purchase_invoice = form1.cleaned_data.get('purchase_invoice')
-            client_name = form1.cleaned_data.get('client_name')
-            purchase_date = form1.cleaned_data.get('purchase_date')
-            purchase_address = form1.cleaned_data.get('purchase_address')
-            reference_no = form1.cleaned_data.get('reference_no')
-            Final_Amount = form1.cleaned_data.get('Final_Amount')
-            self.model1.objects.create(
-                purchase_invoice=purchase_invoice, client_name=client_name, purchase_date=purchase_date, purchase_address=purchase_address,
-                reference_no=reference_no, Final_Amount=Final_Amount
-            )
-            return redirect(to=''
-                               '')
+
+class Purchase(View):
+    pass
+    # form1=PurchaseForm
+    # form2=Sub_PurchaseForm
+    # model1=purchase.Purchase
+    # model2=sub_purchase.Sub_purchase
+    # purchaseForm_templates='dashboard/purchase_form.html'
+    #
+    # def get(self,request,*args,**kwargs):
+    #     if'purchase_form' in kwargs:
+    #         context={
+    #             'purchase':self.form1(),'sub_purchase':self.form2()
+    #         }
+    #         return render(request,self.purchaseForm_templates,context)
+
+    # def post(self,request,*args,**kwargs):
+    #     if self.request.is_ajax and self.request.method == "POST":
+    #         form1 = self.form1(self.request.POST)
+    #         form2 = self.form2(self.request.POST)
+    #         if form1.is_valid() :
+    #             instance = form1.save()
+    #             ser_instance = serializers.serialize('json', [instance, ])
+    #             # send to client side.
+    #             return JsonResponse({"instance": ser_instance}, status=200)
+    #         else:
+    #             return JsonResponse({"error": form1.errors}, status=400)
+    #
+    #
+    #     return JsonResponse({"error": ""}, status=400)
+    #
+
+
+        # form1=self.form1(request.POST)
+        # form2=self.form2(request.POST)
+        # if self.form1.is_valid():
+        #     purchase_invoice = form1.cleaned_data.get('purchase_invoice')
+        #     client_name = form1.cleaned_data.get('client_name')
+        #     purchase_date = form1.cleaned_data.get('purchase_date')
+        #     purchase_address = form1.cleaned_data.get('purchase_address')
+        #     reference_no = form1.cleaned_data.get('reference_no')
+        #     Final_Amount = form1.cleaned_data.get('Final_Amount')
+        #     self.model1.objects.create(
+        #         purchase_invoice=purchase_invoice, client_name=client_name, purchase_date=purchase_date, purchase_address=purchase_address,
+        #         reference_no=reference_no, Final_Amount=Final_Amount
+        #     )
+        #     return redirect(to='')
+
+
 
 
 

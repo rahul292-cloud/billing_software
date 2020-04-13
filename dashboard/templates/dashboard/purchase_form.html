@@ -8,52 +8,78 @@ Purchase Add
 
 {%block content %}
 
-<form action="" method="post">
+<!--<form action="" method="post" id="purchase-form1">-->
+
+<!--    {% csrf_token %}-->
+
+<!--    <div class="border border-primary border-bottom mx-3 container">-->
+
+<!--        <div class="form-row mx-3 my-1">-->
+
+<!--            <div class="form-group col-lg-5 col-md-4 col-sm-12">-->
+<!--                <label for="invoice">Purchase invoice</label>-->
+<!--                <div id="invoice" name="invoice">-->
+<!--                    {{purchase.purchase_invoice}}-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+<!--            <div class="form-group  col-lg-5 col-md-4 col-sm-12">-->
+<!--                <label for="exampleInputclientName">client Name</label>-->
+<!--                <div id="exampleInputclientName" name="clien_name">-->
+<!--                    {{purchase.client_name}}-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="form-group col-lg-5 col-md-4 col-sm-12">-->
+<!--                <label for="exampleInputPurchaseDate">Purchase Date</label>-->
+<!--                <div id="exampleInputPurchaseDate" name="purchase_date">-->
+<!--                    {{purchase.purchase_date}}-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="form-group col-lg-5 col-md-4 col-sm-12">-->
+<!--                <label for="exampleInputPurchaseAddress">Purchase Address</label>-->
+<!--                <div id="exampleInputPurchaseAddress" name="purchas_address">-->
+<!--                    {{purchase.purchase_address}}-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="form-group col-lg-5 col-md-5 col-sm-12">-->
+<!--                <label for="exampleInputRefNo">Ref No</label>-->
+<!--                <div id="exampleInputRefNo" name="ref_no">-->
+<!--                    {{purchase.reference_no}}-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+<!--        </div>-->
+
+<!--&lt;!&ndash;        <div class="form-row mx-3 my-1">&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            <div class="form-group col-lg-6 col-md-5 col-sm-12">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label for="exampleInputFinaleAmount">Finale Amount</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div id="exampleInputFinaleAmount" name="final_amount">&ndash;&gt;-->
+<!--&lt;!&ndash;                    {{purchase.Final_Amount}}&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+
+
+<!--    </div>-->
+
+<!--    &lt;!&ndash;    <a class="btn btn-danger" href="{% url 'company_view'%}">Cancel</a>&ndash;&gt;-->
+
+<!--</form>-->
+
+<form action="" method="post" id="purchase-form2">
 
     {% csrf_token %}
 
-    <div class="border border-primary border-bottom mx-3">
-
-        <div class="form-row mx-3 my-1">
-
-            <div class="form-group col-lg-5 col-md-4 col-sm-12">
-                <label for="invoice">Purchase invoice</label>
-                <div id="invoice" name="invoice">
-                    {{purchase.purchase_invoice}}
-                </div>
-            </div>
-
-
-            <div class="form-group  col-lg-5 col-md-4 col-sm-12">
-                <label for="exampleInputclientName">client Name</label>
-                <div id="exampleInputclientName" name="clien_name">
-                    {{purchase.client_name}}
-                </div>
-            </div>
-
-            <div class="form-group col-lg-5 col-md-4 col-sm-12">
-                <label for="exampleInputPurchaseDate">Purchase Date</label>
-                <div id="exampleInputPurchaseDate" name="purchase_date">
-                    {{purchase.purchase_date}}
-                </div>
-            </div>
-
-            <div class="form-group col-lg-5 col-md-4 col-sm-12">
-                <label for="exampleInputPurchaseAddress">Purchase Address</label>
-                <div id="exampleInputPurchaseAddress" name="purchas_address">
-                    {{purchase.purchase_address}}
-                </div>
-            </div>
-
-            <div class="form-group col-lg-5 col-md-5 col-sm-12">
-                <label for="exampleInputRefNo">Ref No</label>
-                <div id="exampleInputRefNo" name="ref_no">
-                    {{purchase.reference_no}}
-                </div>
-            </div>
-
-
-        </div>
+    <div class="border border-primary border-bottom mx-3 container">
         <div class="form-row mx-3 my-1">
 
             <div class="form-group col-lg-2 col-md-2 col-sm-12">
@@ -73,7 +99,7 @@ Purchase Add
 
             <div class="form-group col-lg-2 col-md-2 col-sm-12">
                 <label for="exampleInputQty">Qty</label>
-                <div id="exampleInputQty" name="qty">
+                <div id="exampleInputQty" class="qtyy" name="qty">
                     {{sub_purchase.qty}}
                 </div>
             </div>
@@ -118,8 +144,8 @@ Purchase Add
         <div class="form-row mx-3 my-1">
 
 
-            <div class="form-group col-lg-4 col-md-5 col-sm-12">
-                <label for="exampleInputSubTotal">Sub Toatal</label>
+            <div class="form-group col-lg-4 col-md-5 col-sm-12 float-right">
+                <label for="exampleInputSubTotal">Final Toatal</label>
                 <div id="exampleInputSubTotal" name="Sub_total">
                     {{sub_purchase.sub_total}}
                 </div>
@@ -128,100 +154,30 @@ Purchase Add
 
         </div>
 
-        <div class="form-row mx-3 my-1">
-
-
-            <div class="form-group col-lg-6 col-md-5 col-sm-12">
-                <label for="exampleInputFinaleAmount">Finale Amount</label>
-                <div id="exampleInputFinaleAmount" name="final_amount">
-                    {{purchase.Final_Amount}}
-                </div>
-            </div>
-
-
-        </div>
-
-        <!--<div class="container my-2">-->
 
     </div>
+    <button type="submit" class="btn btn-primary my-1 mx-3" id="submit">Add</button>
 
-    <button type="submit" class="btn btn-primary my-1 mx-3">Add</button>
-    <!--    <a class="btn btn-danger" href="{% url 'company_view'%}">Cancel</a>-->
 
 </form>
-<!--<div>-->
-
-<!--    <label for="inputState">Item Code</label>-->
-
-<!--    &lt;!&ndash;        <div class="col-md-4">&ndash;&gt;-->
-<!--    &lt;!&ndash;            <input type="text" class="form-control" id="inputState">&ndash;&gt;-->
-<!--    <div id="inputState" name="Address">-->
-<!--        {{sub_purchase.tax_per}}-->
-<!--    </div>-->
 
 
-<!--    &lt;!&ndash;        </div>&ndash;&gt;-->
-<!--    <label for="inputZip">Item Name</label>-->
-
-<!--    &lt;!&ndash;        <div class="col-md-2">&ndash;&gt;-->
-<!--    &lt;!&ndash;            <input type="text" class="form-control" id="inputZip">&ndash;&gt;-->
-<!--    &lt;!&ndash;        </div>&ndash;&gt;-->
-<!--    <div id="inputZip" name="Address">-->
-<!--        {{sub_purchase.amount}}-->
-<!--    </div>-->
 
 
-<!--&lt;!&ndash;    <button class="btn btn-danger">-</button>&ndash;&gt;-->
 
-<!--&lt;!&ndash;    <div id="param"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;    <a class="btn btn-primary my-2" id="addParam">Add New Line</a>&ndash;&gt;-->
-
-
-<!--</div>-->
-
-<!--</div>-->
 
 {% block javascript %}
 <script>
- let=addParamCount=0
-
- function getElementFromString(string){
-let div = document.createElement("div");
-   div.innerHTML=string;
- return div.firstElementChild;
-
- }
-
- let addParam =document.getElementById("addParam");
 
 
-    addParam.addEventListener('click',()=>{
- let params =document.getElementById("param");
-<!--   let string =`-->
-<!--   <div class="container my-2">-->
+$(document).ready(function(){
 
-<!--        <div class="form-row my-2">-->
-<!--                <label for="inputState">Item Code</label>-->
-
-<!--            <div class="col-md-4">-->
-<!--                <input type="text" class="form-control" id="inputState">-->
-
-<!--            </div>-->
-<!--                            <label for="inputZip">Item Name</label>-->
-
-<!--            <div class="col-md-2">-->
-<!--                <input type="text" class="form-control" id="inputZip">-->
-<!--            </div>-->
-<!--             <button class="btn btn-danger deleteParam">-</button>-->
-
-<!--        </div>-->
-<!--        </div>  `;-->
-
+$("#addParam").click( function(){
+let addParamCount=0;
  let string =`
     <div class="form-row mx-1">
-
          <div class="form-group col-lg-2 col-md-2 col-sm-12">
-            <label for="exampleInputProductCode">Product Code</label>
+            <label for="exampleInputProductCode">Product Code ${addParamCount + 2}</label>
             <div id="exampleInputProductCode" name="product_code">
                 {{sub_purchase.product_code}}
             </div>
@@ -231,37 +187,32 @@ let div = document.createElement("div");
             <div id="exampleInputProductName" name="product_name">
                 {{sub_purchase.product_name}}
             </div>
+
         </div>
-
-
         <div class="form-group col-lg-2 col-md-2 col-sm-12">
             <label for="exampleInputQty">Qty</label>
             <div id="exampleInputQty" name="qty">
                 {{sub_purchase.qty}}
             </div>
         </div>
-
         <div class="form-group col-lg-2 col-md-2 col-sm-12">
             <label for="exampleInputUnitPrice">Unit Price</label>
             <div id="exampleInputUnitPrice" name="unit_price">
                 {{sub_purchase.unit_price}}
             </div>
         </div>
-
         <div class="form-group col-lg-2 col-md-2 col-sm-12">
             <label for="exampleInputUnitPrice">Tax</label>
             <div id="exampleInputTax" name="tax">
                 {{sub_purchase.tax_per}}
             </div>
         </div>
-
         <div class="form-group col-lg-2 col-md-2 col-sm-12">
             <label for="exampleInputUnitPrice">Amount</label>
             <div id="exampleInputAmount" name="amount">
                 {{sub_purchase.amount}}
             </div>
         </div>
-
         <div class="form-group col-lg-2 col-md-4 col-sm-12">
             <label for="exampleInputSerial">Serial No</label>
             <div id="exampleInputSerial" name="serial_no">
@@ -271,42 +222,42 @@ let div = document.createElement("div");
         <button class="btn btn-danger deleteParam">-</button>
     </div> `;
 
+        $("#param").append(string);
+  addParamCount++;
+$(document).on('click','.deleteParam' ,function(e){
 
-         let paramElement=getElementFromString(string);
-                 console.log(paramElement);
+   e.preventDefault();
+   $(this).parent('div').remove();
 
-        params.append(paramElement);
+});
 
-        var deleteParam =document.getElementsByClassName("deleteParam");
-          for ( let item of deleteParam){
-                  item.addEventListener('click',(e)=>{
-                  e.target.parentElement.remove();
-            });
-       }
-      addParamCount++;
+});
 
 
+$("#purchase-form2").submit( function(e){
+    e.preventDefault();
+    var serializedData = $(this).serialize();
+    $.ajax({
+    method:'POST',
+    url: "{% url 'purchase_form' %}",
+    data:serializedData,
+    success:function(data)
+    {
+     alert(data);
+      $("#purchase_form")[0].reset();
+
+
+    }
 
 
     });
 
 
+});
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 
 
@@ -318,6 +269,5 @@ let div = document.createElement("div");
 {% endblock %}
 
 {% endblock%}
-let news =
 
 
